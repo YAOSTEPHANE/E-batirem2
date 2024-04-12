@@ -2,11 +2,11 @@ const ErrorHandler = require("../utils/ErrorHandler");
 
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
-  err.message = err.message || "Erreur Interne du server";
+  err.message = err.message || "Internal server Error";
 
   // wrong mongodb id error
   if (err.name === "CastError") {
-    const message = `Resources nnn trouvé avec cet id.. Invalide ${err.path}`;
+    const message = `Resources not found with this id.. Invalid ${err.path}`;
     err = new ErrorHandler(message, 400);
   }
 
@@ -18,13 +18,13 @@ module.exports = (err, req, res, next) => {
 
   // wrong jwt error
   if (err.name === "JsonWebTokenError") {
-    const message = `Votre url est invalde reessayer plutard`;
+    const message = `Your url is invalid please try again letter`;
     err = new ErrorHandler(message, 400);
   }
 
   // jwt expired
   if (err.name === "TokenExpiredError") {
-    const message = `Votre Url a expiré reessayer plutard!`;
+    const message = `Your Url is expired please try again letter!`;
     err = new ErrorHandler(message, 400);
   }
 
