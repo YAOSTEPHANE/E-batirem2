@@ -46,8 +46,7 @@ const ProductDetails = ({ data }) => {
     if (count > 1) {
       setCount(count - 1);
     }
-  };
-
+  };  
   const removeFromWishlistHandler = (data) => {
     setClick(!click);
     dispatch(removeFromWishlist(data));
@@ -365,7 +364,7 @@ const ProductDetailsInfo = ({
                 </span>
               </h5>
               <h5 className="font-[600] pt-3">
-                Total Products:{" "}
+                Total Produits:{" "}
                 <span className="font-[500]">
                   {products && products.length}
                 </span>
@@ -378,7 +377,7 @@ const ProductDetailsInfo = ({
                 <div
                   className={`${styles.button} !rounded-[4px] !h-[39.5px] mt-3`}
                 >
-                  <h4 className="text-white">Visit Shop</h4>
+                  <h4 className="text-white">Visiter notre Boutique</h4>
                 </div>
               </Link>
             </div>

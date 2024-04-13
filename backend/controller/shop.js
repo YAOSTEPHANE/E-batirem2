@@ -16,7 +16,7 @@ router.post("/create-shop", catchAsyncErrors(async (req, res, next) => {
     const { email } = req.body;
     const sellerEmail = await Shop.findOne({ email });
     if (sellerEmail) {
-      return next(new ErrorHandler("User already exists", 400));
+      return next(new ErrorHandler("L’utilisateur existe déjà", 400));
     }
 
     const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {

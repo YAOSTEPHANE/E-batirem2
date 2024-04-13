@@ -103,7 +103,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                   onClick={handleMessageSubmit}
                 >
                   <span className="text-[#fff] flex items-center">
-                    Send Message <AiOutlineMessage className="ml-1" />
+                    Envoyer Message <AiOutlineMessage className="ml-1" />
                   </span>
                 </div>
                 <h5 className="text-[16px] text-[red] mt-5">(50) Sold out</h5>
@@ -148,14 +148,14 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                         className="cursor-pointer"
                         onClick={() => removeFromWishlistHandler(data)}
                         color={click ? "red" : "#333"}
-                        title="Remove from wishlist"
+                        title="Retirer de la liste de souhaits"
                       />
                     ) : (
                       <AiOutlineHeart
                         size={30}
                         className="cursor-pointer"
                         onClick={() => addToWishlistHandler(data)}
-                        title="Add to wishlist"
+                        title="Ajouter à la liste de souhaits"
                       />
                     )}
                   </div>
