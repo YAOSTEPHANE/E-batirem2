@@ -123,7 +123,7 @@ const AllWithdraw = () => {
               <RxCross1 size={25} onClick={() => setOpen(false)} />
             </div>
             <h1 className="text-[25px] text-center font-Poppins">
-              Update Withdraw status
+            Mettre à jour le statut de retrait
             </h1>
             <br />
             <select
@@ -133,14 +133,14 @@ const AllWithdraw = () => {
               className="w-[200px] h-[35px] border rounded"
             >
               <option value={withdrawStatus}>{withdrawData.status}</option>
-              <option value={withdrawStatus}>Succeed</option>
+              <option value={withdrawStatus}>Réussir</option>
             </select>
             <button
               type="submit"
               className={`block ${styles.button} text-white !h-[42px] mt-4 text-[18px]`}
               onClick={handleSubmit}
             >
-              Update
+              Mettre à jour
             </button>
           </div>
         </div>

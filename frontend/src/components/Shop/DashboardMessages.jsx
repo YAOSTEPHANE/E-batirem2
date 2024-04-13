@@ -210,7 +210,7 @@ const DashboardMessages = () => {
       {!open && (
         <>
           <h1 className="text-center text-[30px] py-3 font-Poppins">
-            All Messages
+            Tous les Messages
           </h1>
           {/* All messages list */}
           {conversations &&
@@ -314,7 +314,7 @@ const MessageList = ({
         <h1 className="text-[18px]">{user?.name}</h1>
         <p className="text-[16px] text-[#000c]">
           {!isLoading && data?.lastMessageId !== user?._id
-            ? "You:"
+            ? "Vous:"
             : user?.name.split(" ")[0] + ": "}{" "}
           {data?.lastMessage}
         </p>

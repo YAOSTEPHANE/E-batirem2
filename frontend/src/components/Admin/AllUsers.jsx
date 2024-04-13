@@ -121,13 +121,13 @@ const AllUsers = () => {
                   className={`${styles.button} text-white text-[18px] !h-[42px] mr-4`}
                   onClick={() => setOpen(false)}
                 >
-                  cancel
+                  annuler
                 </div>
                 <div
                   className={`${styles.button} text-white text-[18px] !h-[42px] ml-4`}
                   onClick={() =>  setOpen(false) || handleDelete(userId)}
                 >
-                  confirm
+                  confirmé
                 </div>
               </div>
             </div>
