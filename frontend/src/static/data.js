@@ -1,19 +1,19 @@
 // navigation Data
 export const navItems = [
     {
-      title: "Home",
+      title: "Accueil",
       url: "/",
     },
     {
-      title: "Best Selling",
+      title: "Meilleur Vendeur",
       url: "/best-selling",
     },
     {
-      title: "Products",
+      title: "Produits",
       url: "/products",
     },
     {
-      title: "Events",
+      title: "Evenements",
       url: "/events",
     },
     {

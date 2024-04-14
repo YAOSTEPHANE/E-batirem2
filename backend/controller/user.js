@@ -1,36 +1,43 @@
 const express = require("express");
+const path = require("path");
 const User = require("../model/user");
 const router = express.Router();
-const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
+const {uploads} = require("../multer");
 const { isAuthenticated, isAdmin } = require("../middleware/auth");
+const fs = require("fs");
 
 // create user
-router.post("/create-user", async (req, res, next) => {
+router.post("/create-user", uploads.single("file"), async (req, res, next) => {
   try {
-    const { name, email, password, avatar } = req.body;
+    const { name, email, password, avatar} = req.body;
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
-      return next(new ErrorHandler("User already exists", 400));
-    }
-
-    const myCloud = await cloudinary.v2.uploader.upload(avatar, {
-      folder: "avatars",
+      const filename = req.file.filename;
+      const filePath = `uploads/${filename}`;
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.log(err);
+          res.status(500).json({ message: "Erreur lors de la suppression de la photo" });
+        }else{
+          res.json({ message: "Photo supprimée avec succès" });
+        }
     });
+    return next(new ErrorHandler("Utilisateur exit deja", 400));
+    }
+    const filename=req.file.filename;
+    const fileUrl = path.join(filename);
 
     const user = {
       name: name,
       email: email,
       password: password,
-      avatar: {
-        public_id: myCloud.public_id,
-        url: myCloud.secure_url,
-      },
+      avatar: fileUrl,
     };
 
     const activationToken = createActivationToken(user);
@@ -40,12 +47,12 @@ router.post("/create-user", async (req, res, next) => {
     try {
       await sendMail({
         email: user.email,
-        subject: "Activate your account",
-        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+        subject: "Activer votre compte",
+        message: `Bonjour ${user.name}, s'il vous plait cliquer sur le lien envoyé a votre email: ${activationUrl}`,
       });
       res.status(201).json({
         success: true,
-        message: `please check your email:- ${user.email} to activate your account!`,
+        message: `s'il vous verifier votre email:- ${user.email} pour activer votre compte!`,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -75,14 +82,14 @@ router.post(
       );
 
       if (!newUser) {
-        return next(new ErrorHandler("Invalid token", 400));
+        return next(new ErrorHandler("Jeton non valide", 400));
       }
       const { name, email, password, avatar } = newUser;
 
       let user = await User.findOne({ email });
 
       if (user) {
-        return next(new ErrorHandler("User already exists", 400));
+        return next(new ErrorHandler("L’utilisateur existe déjà", 400));
       }
       user = await User.create({
         name,
@@ -106,20 +113,20 @@ router.post(
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return next(new ErrorHandler("Please provide the all fields!", 400));
+        return next(new ErrorHandler("S’il vous plaît fournir tous les champs!", 400));
       }
 
       const user = await User.findOne({ email }).select("+password");
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists!", 400));
+        return next(new ErrorHandler("L’utilisateur n’existe pas!", 400));
       }
 
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
         return next(
-          new ErrorHandler("Please provide the correct information", 400)
+          new ErrorHandler("S’il vous plaît fournir les informations correctes", 400)
         );
       }
 

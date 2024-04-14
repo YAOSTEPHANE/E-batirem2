@@ -10,10 +10,12 @@ app.use(cors({
   credentials: true
 }));
 
+
 app.use(express.json());
 app.use(cookieParser());
+app.use("/", express.static("/uploads"));
 app.use("/test", (req, res) => {
-  res.send("Hello world!");
+  res.send("Bonjour!");
 });
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
