@@ -207,7 +207,7 @@ router.get(
 );
 
 // update shop profile picture
-router.put(
+router.put(  
   "/update-shop-avatar",
   isSeller,
   catchAsyncErrors(async (req, res, next) => {
