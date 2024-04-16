@@ -26,6 +26,7 @@
     "redux-thunk": "^3.1.0",
     "redux-toolkit": "^1.1.2",
     "socket.io-client": "^4.6.1",
+    "source-map-loader": "^5.0.0",
     "stripe": "^15.1.0",
     "timeago": "^1.6.7",
     "timeago.js": "^4.0.2",

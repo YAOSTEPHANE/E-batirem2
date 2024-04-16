@@ -95,7 +95,7 @@ const AdminDashboardMain = () => {
               <h3
                 className={`${styles.productTitle} !text-[18px] leading-5 !font-[400] text-[#00000085]`}
               >
-                Total des gains
+                Total Earning
               </h3>
             </div>
             <h5 className="pt-2 pl-[36px] text-[22px] font-[500]">$ {adminBalance}</h5>
@@ -107,12 +107,12 @@ const AdminDashboardMain = () => {
               <h3
                 className={`${styles.productTitle} !text-[18px] leading-5 !font-[400] text-[#00000085]`}
               >
-                Tous les vendeurs
+                All Sellers
               </h3>
             </div>
             <h5 className="pt-2 pl-[36px] text-[22px] font-[500]">{sellers && sellers.length}</h5>
             <Link to="/admin-sellers">
-              <h5 className="pt-4 pl-2 text-[#077f9c]">Voir les vendeurs</h5>
+              <h5 className="pt-4 pl-2 text-[#077f9c]">View Sellers</h5>
             </Link>
           </div>
   
@@ -126,12 +126,12 @@ const AdminDashboardMain = () => {
               <h3
                 className={`${styles.productTitle} !text-[18px] leading-5 !font-[400] text-[#00000085]`}
               >
-                Toutes les commandes
+                All Orders
               </h3>
             </div>
             <h5 className="pt-2 pl-[36px] text-[22px] font-[500]">{adminOrders && adminOrders.length}</h5>
             <Link to="/admin-orders">
-              <h5 className="pt-4 pl-2 text-[#077f9c]">Voir les commandes</h5>
+              <h5 className="pt-4 pl-2 text-[#077f9c]">View Orders</h5>
             </Link>
           </div>
         </div>

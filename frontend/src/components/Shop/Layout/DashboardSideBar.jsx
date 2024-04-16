@@ -24,7 +24,7 @@ const DashboardSideBar = ({ active }) => {
               active === 1 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Tableau de bord
+            Dashboard
           </h5>
         </Link>
       </div>
@@ -40,7 +40,7 @@ const DashboardSideBar = ({ active }) => {
               active === 2 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Toutes les commandes
+            All Orders
           </h5>
         </Link>
       </div>
@@ -53,7 +53,7 @@ const DashboardSideBar = ({ active }) => {
               active === 3 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Tous les produits
+            All Products
           </h5>
         </Link>
       </div>
@@ -72,7 +72,7 @@ const DashboardSideBar = ({ active }) => {
               active === 4 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Créer un produit
+            Create Product
           </h5>
         </Link>
       </div>
@@ -88,7 +88,7 @@ const DashboardSideBar = ({ active }) => {
               active === 5 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Tous les événements
+            All Events
           </h5>
         </Link>
       </div>
@@ -104,7 +104,7 @@ const DashboardSideBar = ({ active }) => {
               active === 6 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Créer un événement
+            Create Event
           </h5>
         </Link>
       </div>
@@ -123,7 +123,7 @@ const DashboardSideBar = ({ active }) => {
               active === 7 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Retirer de l’argent
+            Withdraw Money
           </h5>
         </Link>
       </div>
@@ -139,7 +139,7 @@ const DashboardSideBar = ({ active }) => {
               active === 8 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Achat de la boîte de réception
+            Shop Inbox
           </h5>
         </Link>
       </div>
@@ -155,7 +155,7 @@ const DashboardSideBar = ({ active }) => {
               active === 9 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Codes de réduction
+            Discount Codes
           </h5>
         </Link>
       </div>
@@ -171,7 +171,7 @@ const DashboardSideBar = ({ active }) => {
               active === 10 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Remboursement
+            Refunds
           </h5>
         </Link>
       </div>
@@ -187,7 +187,7 @@ const DashboardSideBar = ({ active }) => {
               active === 11 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
-            Paramètres
+            Settings
           </h5>
         </Link>
       </div>

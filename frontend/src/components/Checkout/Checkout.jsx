@@ -138,7 +138,7 @@ const Checkout = () => {
         className={`${styles.button} w-[150px] 800px:w-[280px] mt-10`}
         onClick={paymentSubmit}
       >
-        <h5 className="text-white">Aller à Paiement</h5>
+        <h5 className="text-white">Go to Payment</h5>
       </div>
     </div>
   );
@@ -161,12 +161,12 @@ const ShippingInfo = ({
 }) => {
   return (
     <div className="w-full 800px:w-[95%] bg-white rounded-md p-5 pb-8">
-      <h5 className="text-[18px] font-[500]">Adresse de livraison</h5>
+      <h5 className="text-[18px] font-[500]">Shipping Address</h5>
       <br />
       <form>
         <div className="w-full flex pb-3">
           <div className="w-[50%]">
-            <label className="block pb-2">Nom complet</label>
+            <label className="block pb-2">Full Name</label>
             <input
               type="text"
               value={user && user.name}
@@ -175,7 +175,7 @@ const ShippingInfo = ({
             />
           </div>
           <div className="w-[50%]">
-            <label className="block pb-2">Adresse email</label>
+            <label className="block pb-2">Email Address</label>
             <input
               type="email"
               value={user && user.email}
@@ -187,7 +187,7 @@ const ShippingInfo = ({
 
         <div className="w-full flex pb-3">
           <div className="w-[50%]">
-            <label className="block pb-2">Numéro de téléphone</label>
+            <label className="block pb-2">Phone Number</label>
             <input
               type="number"
               required
@@ -196,7 +196,7 @@ const ShippingInfo = ({
             />
           </div>
           <div className="w-[50%]">
-            <label className="block pb-2">Code postal</label>
+            <label className="block pb-2">Zip Code</label>
             <input
               type="number"
               value={zipCode}
@@ -209,14 +209,14 @@ const ShippingInfo = ({
 
         <div className="w-full flex pb-3">
           <div className="w-[50%]">
-            <label className="block pb-2">Pays</label>
+            <label className="block pb-2">Country</label>
             <select
               className="w-[95%] border h-[40px] rounded-[5px]"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             >
               <option className="block pb-2" value="">
-              Choisissez votre pays
+                Choose your country
               </option>
               {Country &&
                 Country.getAllCountries().map((item) => (
@@ -227,14 +227,14 @@ const ShippingInfo = ({
             </select>
           </div>
           <div className="w-[50%]">
-            <label className="block pb-2">Ville</label>
+            <label className="block pb-2">City</label>
             <select
               className="w-[95%] border h-[40px] rounded-[5px]"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             >
               <option className="block pb-2" value="">
-              Choisissez votre ville
+                Choose your City
               </option>
               {State &&
                 State.getStatesOfCountry(country).map((item) => (
@@ -275,7 +275,7 @@ const ShippingInfo = ({
         className="text-[18px] cursor-pointer inline-block"
         onClick={() => setUserInfo(!userInfo)}
       >
-        Choisissez À partir de l’adresse enregistrée
+        Choose From saved address
       </h5>
       {userInfo && (
         <div>
@@ -315,22 +315,22 @@ const CartData = ({
   return (
     <div className="w-full bg-[#fff] rounded-md p-5 pb-8">
       <div className="flex justify-between">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">sous-total:</h3>
-        <h5 className="text-[18px] font-[600]">{subTotalPrice} FCFA</h5>
+        <h3 className="text-[16px] font-[400] text-[#000000a4]">subtotal:</h3>
+        <h5 className="text-[18px] font-[600]">${subTotalPrice}</h5>
       </div>
       <br />
       <div className="flex justify-between">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">livraison:</h3>
-        <h5 className="text-[18px] font-[600]">{shipping.toFixed(2)} FCFA</h5>
+        <h3 className="text-[16px] font-[400] text-[#000000a4]">shipping:</h3>
+        <h5 className="text-[18px] font-[600]">${shipping.toFixed(2)}</h5>
       </div>
       <br />
       <div className="flex justify-between border-b pb-3">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">Rabais:</h3>
+        <h3 className="text-[16px] font-[400] text-[#000000a4]">Discount:</h3>
         <h5 className="text-[18px] font-[600]">
-          - {discountPercentenge ? "FCFA" + discountPercentenge.toString() : null}
+          - {discountPercentenge ? "$" + discountPercentenge.toString() : null}
         </h5>
       </div>
-      <h5 className="text-[18px] font-[600] text-end pt-3">{totalPrice} FCFA</h5>
+      <h5 className="text-[18px] font-[600] text-end pt-3">${totalPrice}</h5>
       <br />
       <form onSubmit={handleSubmit}>
         <input

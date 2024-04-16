@@ -33,7 +33,6 @@ const Categories = () => {
             categoriesData.map((i) => {
               const handleSubmit = (i) => {
                 navigate(`/products?category=${i.title}`);
-                window.location.reload();
               };
               return (
                 <div

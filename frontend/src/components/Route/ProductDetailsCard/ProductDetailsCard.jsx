@@ -94,7 +94,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                       <h3 className={`${styles.shop_name}`}>
                         {data.shop.name}
                       </h3>
-                      <h5 className="pb-3 text-[15px]">{data?.ratings} évaluations</h5>
+                      <h5 className="pb-3 text-[15px]">{data?.ratings} Ratings</h5>
                     </div>
                   </Link>
                 </div>
@@ -103,10 +103,10 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                   onClick={handleMessageSubmit}
                 >
                   <span className="text-[#fff] flex items-center">
-                    Envoyer Message <AiOutlineMessage className="ml-1" />
+                    Send Message <AiOutlineMessage className="ml-1" />
                   </span>
                 </div>
-                <h5 className="text-[16px] text-[red] mt-5">(50) Épuisé</h5>
+                <h5 className="text-[16px] text-[red] mt-5">(50) Sold out</h5>
               </div>
 
               <div className="w-full 800px:w-[50%] pt-5 pl-[5px] pr-[5px]">
@@ -148,14 +148,14 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                         className="cursor-pointer"
                         onClick={() => removeFromWishlistHandler(data)}
                         color={click ? "red" : "#333"}
-                        title="Retirer de la liste de souhaits"
+                        title="Remove from wishlist"
                       />
                     ) : (
                       <AiOutlineHeart
                         size={30}
                         className="cursor-pointer"
                         onClick={() => addToWishlistHandler(data)}
-                        title="Ajouter à la liste de souhaits"
+                        title="Add to wishlist"
                       />
                     )}
                   </div>
@@ -165,7 +165,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                   onClick={() => addToCartHandler(data._id)}
                 >
                   <span className="text-[#fff] flex items-center">
-                  Ajouter au panier <AiOutlineShoppingCart className="ml-1" />
+                    Add to cart <AiOutlineShoppingCart className="ml-1" />
                   </span>
                 </div>
               </div>

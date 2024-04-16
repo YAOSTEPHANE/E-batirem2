@@ -1,10 +1,10 @@
-import {  createReducer } from "@reduxjs/toolkit";
+import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: true,
 };
 
-export const productReducer =  createReducer(initialState, {
+export const productReducer = createReducer(initialState, {
   productCreateRequest: (state) => {
     state.isLoading = true;
   },

@@ -5,45 +5,37 @@ const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const Shop = require("../model/shop");
 const { isAuthenticated, isSeller, isAdmin } = require("../middleware/auth");
-const {uploads} = require("../multer");
-const fs = require("fs");
+const cloudinary = require("cloudinary");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ErrorHandler = require("../utils/ErrorHandler");
 const sendShopToken = require("../utils/shopToken");
 
 // create shop
-router.post("/create-shop", uploads.single("file"), async (req, res, next) => {
+router.post("/create-shop", catchAsyncErrors(async (req, res, next) => {
   try {
     const { email } = req.body;
     const sellerEmail = await Shop.findOne({ email });
     if (sellerEmail) {
-      const filename = req.file.filename;
-      const filePath = `uploads/${filename}`;
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.log(err);
-          res.status(500).json({ message: "Erreur lors de la suppression de la photo" });
-        }
-      });
-
-      return next(new ErrorHandler("L’utilisateur existe déjà", 400));
+      return next(new ErrorHandler("User already exists", 400));
     }
 
-    const filename=req.file.filename;
-    const fileUrl = path.join(filename);
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "avatars",
+    });
+
+
     const seller = {
-          name: req.body.name,
-          email: email,
-          password: req.body.password,
-          avatar: fileUrl,
-        
-          address: req.body.address,
-          phoneNumber: req.body.phoneNumber,
-          zipCode: req.body.zipCode,
-        };
-
-
-    
+      name: req.body.name,
+      email: email,
+      password: req.body.password,
+      avatar: {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      },
+      address: req.body.address,
+      phoneNumber: req.body.phoneNumber,
+      zipCode: req.body.zipCode,
+    };
 
     const activationToken = createActivationToken(seller);
 
@@ -65,7 +57,7 @@ router.post("/create-shop", uploads.single("file"), async (req, res, next) => {
   } catch (error) {
     return next(new ErrorHandler(error.message, 400));
   }
-});
+}));
 
 // create activation token
 const createActivationToken = (seller) => {
@@ -207,7 +199,7 @@ router.get(
 );
 
 // update shop profile picture
-router.put(  
+router.put(
   "/update-shop-avatar",
   isSeller,
   catchAsyncErrors(async (req, res, next) => {

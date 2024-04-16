@@ -34,9 +34,9 @@ const Payment = () => {
       .create({
         purchase_units: [
           {
-            description: "Tournesol",
+            description: "Sunflower",
             amount: {
-              currency_code: "FCFA",
+              currency_code: "USD",
               value: orderData?.totalPrice,
             },
           },
@@ -79,7 +79,7 @@ const Payment = () => {
 
     order.paymentInfo = {
       id: paymentInfo.payer_id,
-      status: "Réussi",
+      status: "succeeded",
       type: "Paypal",
     };
 
@@ -88,7 +88,7 @@ const Payment = () => {
       .then((res) => {
         setOpen(false);
         navigate("/order/success");
-        toast.success("Commande réussie!");
+        toast.success("Order successful!");
         localStorage.setItem("cartItems", JSON.stringify([]));
         localStorage.setItem("latestOrder", JSON.stringify([]));
         window.location.reload();
@@ -126,7 +126,7 @@ const Payment = () => {
       if (result.error) {
         toast.error(result.error.message);
       } else {
-        if (result.paymentIntent.status === "Réussi") {
+        if (result.paymentIntent.status === "succeeded") {
           order.paymnentInfo = {
             id: result.paymentIntent.id,
             status: result.paymentIntent.status,
@@ -160,7 +160,7 @@ const Payment = () => {
     };
 
     order.paymentInfo = {
-      type: "Paiement à la livraison",
+      type: "Cash On Delivery",
     };
 
     await axios
@@ -222,7 +222,7 @@ const PaymentInfo = ({
             ) : null}
           </div>
           <h4 className="text-[18px] pl-2 font-[600] text-[#000000b1]">
-          Payer par carte de débit/crédit
+            Pay with Debit/credit card
           </h4>
         </div>
 
@@ -232,7 +232,7 @@ const PaymentInfo = ({
             <form className="w-full" onSubmit={paymentHandler}>
               <div className="w-full flex pb-3">
                 <div className="w-[50%]">
-                  <label className="block pb-2">Nom sur la carte</label>
+                  <label className="block pb-2">Name On Card</label>
                   <input
                     required
                     placeholder={user && user.name}
@@ -241,7 +241,7 @@ const PaymentInfo = ({
                   />
                 </div>
                 <div className="w-[50%]">
-                  <label className="block pb-2">Date d’exp</label>
+                  <label className="block pb-2">Exp Date</label>
                   <CardExpiryElement
                     className={`${styles.input}`}
                     options={{
@@ -266,7 +266,7 @@ const PaymentInfo = ({
 
               <div className="w-full flex pb-3">
                 <div className="w-[50%]">
-                  <label className="block pb-2">Numéro de carte</label>
+                  <label className="block pb-2">Card Number</label>
                   <CardNumberElement
                     className={`${styles.input} !h-[35px] !w-[95%]`}
                     options={{
@@ -333,7 +333,7 @@ const PaymentInfo = ({
             ) : null}
           </div>
           <h4 className="text-[18px] pl-2 font-[600] text-[#000000b1]">
-          Payer avec PayPal
+            Pay with Paypal
           </h4>
         </div>
 
@@ -344,7 +344,7 @@ const PaymentInfo = ({
               className={`${styles.button} !bg-[#f63b60] text-white h-[45px] rounded-[5px] cursor-pointer text-[18px] font-[600]`}
               onClick={() => setOpen(true)}
             >
-              Payer maintenant
+              Pay Now
             </div>
             {open && (
               <div className="w-full fixed top-0 left-0 bg-[#00000039] h-screen flex items-center justify-center z-[99999]">
@@ -388,7 +388,7 @@ const PaymentInfo = ({
             ) : null}
           </div>
           <h4 className="text-[18px] pl-2 font-[600] text-[#000000b1]">
-          Paiement à la livraison
+            Cash on Delivery
           </h4>
         </div>
 
@@ -414,21 +414,21 @@ const CartData = ({ orderData }) => {
   return (
     <div className="w-full bg-[#fff] rounded-md p-5 pb-8">
       <div className="flex justify-between">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">sous-total:</h3>
-        <h5 className="text-[18px] font-[600]">{orderData?.subTotalPrice} FCFA</h5>
+        <h3 className="text-[16px] font-[400] text-[#000000a4]">subtotal:</h3>
+        <h5 className="text-[18px] font-[600]">${orderData?.subTotalPrice}</h5>
       </div>
       <br />
       <div className="flex justify-between">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">livraison:</h3>
-        <h5 className="text-[18px] font-[600]">{shipping} FCFA</h5>
+        <h3 className="text-[16px] font-[400] text-[#000000a4]">shipping:</h3>
+        <h5 className="text-[18px] font-[600]">${shipping}</h5>
       </div>
       <br />
       <div className="flex justify-between border-b pb-3">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">Rabais:</h3>
+        <h3 className="text-[16px] font-[400] text-[#000000a4]">Discount:</h3>
         <h5 className="text-[18px] font-[600]">{orderData?.discountPrice? "$" + orderData.discountPrice : "-"}</h5>
       </div>
       <h5 className="text-[18px] font-[600] text-end pt-3">
-        {orderData?.totalPrice} FCFA
+        ${orderData?.totalPrice}
       </h5>
       <br />
     </div>
